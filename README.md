@@ -18,3 +18,14 @@ Include the path to the git config file from your root `.gitconfig` or remote th
 [include]
     path = ~/.config/git/config
 ```
+
+## Shell setup (macOS & Linux)
+
+- [Fish shell](https://fishshell.com/)
+- [Fisher](https://github.com/jorgebucaran/fisher) - Plugin manager
+
+After installing fish and fisher install fish plugins
+
+```bash
+fisher update
+```
