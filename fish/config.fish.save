@@ -1,0 +1,9 @@
+if type -q eza
+    alias ll "eza -G --icons"
+end
+
+eval (/opt/homebrew/bin/brew shellenv)
+
+set -gx NVM_DIR $HOME/.nvm
+bass source $NVM_DIR/nvm.sh --no-use
+0;6u

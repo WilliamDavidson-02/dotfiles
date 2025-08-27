@@ -1,0 +1,11 @@
+theme = "Solarized Dark - Patched"
+font-size = "24"
+
+background = #031219
+
+font-family = "PlemolJP Console NF"
+
+cursor-style = block
+
+window-height = "900"
+window-width = "1440"
