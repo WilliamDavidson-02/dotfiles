@@ -1,13 +1,34 @@
+function ColorMyPencils(color)
+	color = color or "rose-pine"
+end
+
 return {
     {
-        "craftzdog/solarized-osaka.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {
-            transparent = true,
-        },
+        "rose-pine/neovim",
+        name = "rose-pine",
         config = function()
-            vim.cmd("colorscheme solarized-osaka")
-        end,
-    }
+            require('rose-pine').setup({
+                disable_background = true,
+                styles = {
+                    italic = false,
+                },
+            })
+
+            vim.cmd.colorscheme("rose-pine")
+
+            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        end
+    },
+    -- {
+    --     "craftzdog/solarized-osaka.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     opts = {
+    --         transparent = true,
+    --     },
+    --     config = function()
+    --         vim.cmd("colorscheme solarized-osaka")
+    --     end,
+    -- }
 }
