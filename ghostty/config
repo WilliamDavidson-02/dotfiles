@@ -1,7 +1,8 @@
-theme = "Solarized Dark - Patched"
+theme = "Builtin Tango Dark"
 font-size = "24"
 
-background = #031219
+macos-titlebar-style = "tabs"
+window-titlebar-background = #000000
 
 font-family = "PlemolJP Console NF"
 
