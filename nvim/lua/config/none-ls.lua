@@ -4,8 +4,9 @@ local formatting = null_ls.builtins.formatting
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
+    root_dir = vim.loop.cwd,
     sources = {
-        null_ls.builtins.formatting.prettier, -- change as needed
+        formatting.prettier,
     },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
@@ -14,7 +15,13 @@ null_ls.setup({
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                    vim.lsp.buf.format({ bufnr = bufnr })
+                    vim.lsp.buf.format({
+                        bufnr = bufnr,
+                        filter = function(c)
+                            return c.name == "null-ls"
+                        end,
+                        timeout_ms = 2000,
+                    })
                 end,
             })
         end

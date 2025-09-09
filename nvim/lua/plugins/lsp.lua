@@ -1,28 +1,36 @@
 return {
+    -- Comment plugin
     {
         'numToStr/Comment.nvim',
     },
 
+    -- Mason core
     {
         "mason-org/mason.nvim",
         config = true,
     },
 
+    -- Mason LSP bridge
     {
         "williamboman/mason-lspconfig.nvim",
         config = true,
         dependencies = { "mason-org/mason.nvim" },
     },
 
+    -- LSP Config
     {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+            -- TypeScript / JavaScript LSP
             lspconfig.ts_ls.setup({
                 capabilities = capabilities,
-                on_attach = function(_, bufnr)
+                on_attach = function(client, bufnr)
+                    -- disable ts_ls formatting to avoid conflict with none-ls
+                    client.server_capabilities.documentFormattingProvider = false
+
                     local opts = { buffer = bufnr, desc = "LSP Hover" }
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                 end,
@@ -30,6 +38,7 @@ return {
         end,
     },
 
+    -- Completion
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
@@ -55,15 +64,14 @@ return {
         end,
     },
 
-
+    -- none-ls for format-on-save
     {
         "nvimtools/none-ls.nvim",
         event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("config.none-ls")
         end,
     },
+
 }
