@@ -21,6 +21,7 @@
   st = status
   br = branch
   ba = branch -a
+  bs = "!f() { branch=$(git branch --format=\"%(refname:short)\" | fzf --prompt=\"Select branch> \"); if [ -n \"$branch\" ]; then git checkout \"$branch\"; fi; }; f"
   bm = branch --merged
   bn = branch --no-merged
   df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
