@@ -27,4 +27,21 @@ return {
             })
         end,
     },
+
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "BufReadPre",
+        config = function()
+            require("gitsigns").setup {
+                numhl = true, -- highlight line numbers for changed lines
+                linehl = false, -- highlight entire lines
+                watch_gitdir = {
+                    interval = 1000,
+                    follow_files = true
+                },
+                current_line_blame = true, -- show git blame for current line
+                sign_priority = 6,
+            }
+        end
+    }
 }
