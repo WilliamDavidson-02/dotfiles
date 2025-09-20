@@ -21,22 +21,22 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            -- TypeScript / JavaScript LSP
-            lspconfig.ts_ls.setup({
+            vim.lsp.config("tsserver", {
                 capabilities = capabilities,
                 on_attach = function(client, bufnr)
-                    -- disable ts_ls formatting to avoid conflict with none-ls
                     client.server_capabilities.documentFormattingProvider = false
 
                     local opts = { buffer = bufnr, desc = "LSP Hover" }
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                 end,
             })
+
+            vim.lsp.enable("tsserver")
         end,
     },
+
 
     -- Completion
     {
