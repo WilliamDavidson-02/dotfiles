@@ -11,7 +11,8 @@
   grep = auto
   ui = auto
 [alias]
-  a = "!git status --short | peco | awk '{print $2}' | xargs git add"
+  a = "!git status --short | fzf | awk '{print $2}' | xargs git add"
+  u = "!git status --short | fzf | awk '{print $2}' | xargs git restore --staged"
   d = diff
   co = checkout
   cb = checkout -b
@@ -25,6 +26,6 @@
   bs = "!f() { branch=$(git branch --format=\"%(refname:short)\" | fzf --prompt=\"Select branch> \"); if [ -n \"$branch\" ]; then git checkout \"$branch\"; fi; }; f"
   bm = branch --merged
   bn = branch --no-merged
-  df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+  df = "!git hist | fzf | awk '{print $2}' | xargs -I {} git diff {}^ {}"
   llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
 
