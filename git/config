@@ -26,6 +26,7 @@
   bs = "!f() { branch=$(git branch --format=\"%(refname:short)\" | fzf --prompt=\"Select branch> \"); if [ -n \"$branch\" ]; then git checkout \"$branch\"; fi; }; f"
   bm = branch --merged
   bn = branch --no-merged
+  mb = "!f() { branch=$(git branch --format='%(refname:short)' | fzf --prompt='Merge branch> '); if [ -n \"$branch\" ]; then git merge \"$branch\"; fi; }; f"
   df = "!git hist | fzf | awk '{print $2}' | xargs -I {} git diff {}^ {}"
   llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
 
